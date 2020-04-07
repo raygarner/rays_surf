@@ -1,0 +1,50 @@
+--- surf.c
++++ surf.c
+@@ -205,10 +205,6 @@ static void decidenewwindow(WebKitPolicyDecision *d, Client *c);
+ static void decideresource(WebKitPolicyDecision *d, Client *c);
+ static void insecurecontent(WebKitWebView *v, WebKitInsecureContentEvent e,
+                             Client *c);
+-static void downloadstarted(WebKitWebContext *wc, WebKitDownload *d,
+-                            Client *c);
+-static void responsereceived(WebKitDownload *d, GParamSpec *ps, Client *c);
+-static void download(Client *c, WebKitURIResponse *r);
+ static void webprocessterminated(WebKitWebView *v,
+                                  WebKitWebProcessTerminationReason r,
+                                  Client *c);
+@@ -351,6 +358,8 @@ setup(void)
+ 	scriptfile = buildfile(scriptfile);
+ 	cachedir   = buildpath(cachedir);
+ 	certdir    = buildpath(certdir);
++	dlstatus   = buildpath(dlstatus);
++	dldir      = buildpath(dldir);
+
+ 	gdkkb = gdk_seat_get_keyboard(gdk_display_get_default_seat(gdpy));
+
+@@ -1733,27 +1743,6 @@ insecurecontent(WebKitWebView *v, WebKitInsecureContentEvent e, Client *c)
+ 	c->insecure = 1;
+ }
+
+-void
+-downloadstarted(WebKitWebContext *wc, WebKitDownload *d, Client *c)
+-{
+-	g_signal_connect(G_OBJECT(d), "notify::response",
+-	                 G_CALLBACK(responsereceived), c);
+-}
+-
+-void
+-responsereceived(WebKitDownload *d, GParamSpec *ps, Client *c)
+-{
+-	download(c, webkit_download_get_response(d));
+-	webkit_download_cancel(d);
+-}
+-
+-void
+-download(Client *c, WebKitURIResponse *r)
+-{
+-	Arg a = (Arg)DOWNLOAD(webkit_uri_response_get_uri(r), geturi(c));
+-	spawn(c, &a);
+-}
+-
+ void
+ webprocessterminated(WebKitWebView *v, WebKitWebProcessTerminationReason r,
+                      Client *c)
