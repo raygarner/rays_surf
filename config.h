@@ -98,6 +98,7 @@ static SearchEngine searchengines[] = {
     { "d",   "https://duckduckgo.com/?q=%s&t=h_&ia=web" },
     { "w",   "https://en.wikipedia.org/wiki/Special:Search/%s" },
     { "y",   "https://www.youtube.com/results?search_query=%s" },
+    { "a",   "https://wiki.archlinux.org/index.php?search=%s"  },
 };
 
 #define MODKEY GDK_CONTROL_MASK
