@@ -5,7 +5,7 @@ static char *scriptfile     = "~/.surf/script.js";
 static char *styledir       = "~/.surf/styles/";
 static char *cachedir       = "~/.surf/cache/";
 static char *cookiefile     = "~/.surf/cookies.txt";
-static char *dldir          = "~/dl/";
+static char *dldir          = "~/Downloads/";
 static char *dlstatus       = "~/.surf/dlstatus/";
 
 /* Webkit default features */
