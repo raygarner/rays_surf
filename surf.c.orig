@@ -44,7 +44,7 @@
 #define CSETV(p, s)             [p] = (Parameter){ { .v = s }, 1 }
 #define CSETF(p, s)             [p] = (Parameter){ { .f = s }, 1 }
 
-enum { AtomFind, AtomGo, AtomUri, AtomHist, AtomNav, AtomLast };
+enum { AtomFind, AtomGo, AtomUri, AtomLast };
 
 enum {
 	OnDoc   = WEBKIT_HIT_TEST_RESULT_CONTEXT_DOCUMENT,
@@ -1186,9 +1186,6 @@ processx(GdkXEvent *e, GdkEvent *event, gpointer d)
 				loaduri(c, &a);
 
 				return GDK_FILTER_REMOVE;
-			} else if(ev->atom == atoms[AtomNav]) {
-				arg.v = getatom(c, AtomNav);
-				navhist(c, &arg);
 			}
 		}
 	}

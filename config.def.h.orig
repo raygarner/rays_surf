@@ -105,6 +105,8 @@ static SearchEngine searchengines[] = {
 
 #define MODKEY GDK_CONTROL_MASK
 
+//static char *editscreen[] = { "/bin/sh", "-c", "edit_screen.sh", NULL };
+static char *editscreen[] = { "/bin/sh", "-c", "tee /home/ray/.src && st -e vim /home/ray/.src", NULL };
 
 /* hotkeys */
 /*
@@ -113,6 +115,7 @@ static SearchEngine searchengines[] = {
  */
 static Key keys[] = {
 	/* modifier              keyval          function    arg */
+    { MODKEY,                GDK_KEY_o,     externalpipe, { .v = editscreen        } },
 	{ MODKEY,                GDK_KEY_g,      spawn,      SETPROP("_SURF_URI", "_SURF_GO") },
 	//{ MODKEY,                GDK_KEY_f,      spawn,      SETPROP("_SURF_FIND", "_SURF_FIND") },
 	{ MODKEY,                GDK_KEY_slash,  spawn,      SETPROP("_SURF_FIND", "_SURF_FIND") },
