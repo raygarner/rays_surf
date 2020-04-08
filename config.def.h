@@ -82,6 +82,7 @@ static WebKitFindOptions findopts = WEBKIT_FIND_OPTIONS_CASE_INSENSITIVE |
         } \
 }
 
+
 /* styles */
 /*
  * The iteration will stop at the first match, beginning at the beginning of
@@ -98,9 +99,11 @@ static SearchEngine searchengines[] = {
     { "d",   "https://duckduckgo.com/?q=%s&t=h_&ia=web" },
     { "w",   "https://en.wikipedia.org/wiki/Special:Search/%s" },
     { "y",   "https://www.youtube.com/results?search_query=%s" },
+    { "a",   "https://wiki.archlinux.org/index.php?search=%s"  },
 };
 
 #define MODKEY GDK_CONTROL_MASK
+
 
 /* hotkeys */
 /*
@@ -110,7 +113,7 @@ static SearchEngine searchengines[] = {
 static Key keys[] = {
 	/* modifier              keyval          function    arg */
 	{ MODKEY,                GDK_KEY_g,      spawn,      SETPROP("_SURF_URI", "_SURF_GO") },
-	{ MODKEY,                GDK_KEY_f,      spawn,      SETPROP("_SURF_FIND", "_SURF_FIND") },
+	//{ MODKEY,                GDK_KEY_f,      spawn,      SETPROP("_SURF_FIND", "_SURF_FIND") },
 	{ MODKEY,                GDK_KEY_slash,  spawn,      SETPROP("_SURF_FIND", "_SURF_FIND") },
 
 	{ MODKEY,                GDK_KEY_w,      playexternal, { 0 } },
